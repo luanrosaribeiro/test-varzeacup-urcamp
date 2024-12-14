@@ -1,7 +1,7 @@
 # Teste de Desenvolvimento - VarzeaCup <h2>
-Olá, seja bem vindo ao repositório do VarzeaCup, sistema desenvolvido em PHP com framework Laravel em conjunto com React.JS e banco de dados PostgreSQL. O intuito do projeto é demonstrar o conhecimento nas linguagens antes citadas com objetivo de conquistar a vaga como desenvolvedor.<h4>
+Olá, seja bem vindo ao repositório do VarzeaCup, sistema desenvolvido em PHP com framework Laravel em conjunto com React.JS e banco de dados PostgreSQL. O intuito do projeto é demonstrar o conhecimento nas linguagens antes citadas com objetivo de conquistar a vaga como desenvolvedor.
 
-No repositório teremos a pasta Banco de Dados onde ficará toda a parte para criação do banco e também a pasta projeto onde ficará toda a parte do sistema em si. <h4>
+No repositório teremos a pasta Banco de Dados onde ficará toda a parte para criação do banco e também a pasta projeto onde ficará toda a parte do sistema em si.
 
 #### Instruções para executar o projeto <h4>
 
