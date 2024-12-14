@@ -7,4 +7,4 @@ No repositório teremos a pasta Banco de Dados onde ficará toda a parte para cr
 
 * Banco de dados
   1. Crie um novo database no seu PostgreSQL com o nome 'varzeacup';
-  2. Após isso no database criado rode na sua máquina o arquivo create_bd.sql para que seja feita a criação do banco de dados referente a aplicação.
+  2. Após isso no database criado, abra o arquivo create_bd.sql e execute os comandos contidos neles para que seja feita a criação do banco de dados referente a aplicação.
