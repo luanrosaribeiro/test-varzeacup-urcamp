@@ -3,6 +3,6 @@ Olá, seja bem vindo ao repositório do VarzeaCup, sistema desenvolvido em PHP c
 
 No repositório teremos a pasta Banco de Dados onde ficará toda a parte para criação do banco e também a pasta projeto onde ficará toda a parte do sistema em si.
 
-#### Instruções para executar o projeto <h4>
+### Instruções para executar o projeto <h3>
 
 1. Rode na sua máquina o arquivo create_bd.sql para que seja feita a criação do banco de dados referente a aplicação.
