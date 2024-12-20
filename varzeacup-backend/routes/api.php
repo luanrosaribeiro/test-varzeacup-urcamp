@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use App\Models\Campeonato;
 use App\Models\Time;
 use App\Models\Partida;
+use App\Http\Controllers\TabelaController;
 
  /*--------------------Rotas de Add--------------------*/
 
@@ -23,9 +24,11 @@ Route::post('/addUsuario', function (Request $request) {
     $usuario->email = $validate['email_enviado'];
     $usuario->senha = bcrypt($validate['senha_enviada']);
 
-    $usuario->save();
-
-    return response()->json(['status' => 'success'], 201);
+    if ($usuario->save()) {
+        return response()->json(['status' => 'success'], 201);
+    } else {
+        return response()->json(['status' => 'error'], 500);
+    }
 });
 
 Route::post('/addTime', function (Request $request){
@@ -35,9 +38,11 @@ Route::post('/addTime', function (Request $request){
 
     $time = new App\Models\Time();
     $time->nome = $validate['nome_enviado'];
-    $time->save();
-
-    return response()->json(['status' => 'success'], 201);
+    if ($time->save()) {
+        return response()->json(['status' => 'success'], 201);
+    } else {
+        return response()->json(['status' => 'error'], 500);
+    }
 });
 
 Route::post('/addCampeonato', function (Request $request){
@@ -49,20 +54,23 @@ Route::post('/addCampeonato', function (Request $request){
     $campeonato = new App\Models\Campeonato();
     $campeonato->nome = $validate['nome_enviado'];
     $campeonato->ano = $validate['ano_enviado'];
-    $campeonato->save();
 
-    return response()->json(['status' => 'success'], 201);
+    if ($campeonato->save()) {
+        return response()->json(['status' => 'success'], 201);
+    } else {
+        return response()->json(['status' => 'error'], 500);
+    }
 });
 
 Route::post('/addPartida', function (Request $request){
     $validate = $request->validate([
         'datapartida_enviada' => 'required|date',
-        'horapartida_enviada' => 'required|date',
+        'horapartida_enviada' => 'required',
         'tipo_enviado' => 'required|string',
         'timea_enviado' => 'required|integer',
-        'resultadoa_enviado' => 'required|integer',
+        'resultadoa_enviado' => 'integer',
         'timeb_enviado' => 'required|integer',
-        'resultadob_enviado' => 'required|integer',
+        'resultadob_enviado' => 'integer',
         'idcampeonato_enviado' => 'required|integer'
     ]);
 
@@ -71,16 +79,25 @@ Route::post('/addPartida', function (Request $request){
     $partida->horapartida = $validate['horapartida_enviada'];
     $partida->tipo = $validate['tipo_enviado'];
     $partida->timea = $validate['timea_enviado'];
-    $partida->resultadoa = $validate['resultadoa_enviado'];
+    $partida->resultadoa = $validate['resultadoa_enviado'] ?? null;
     $partida->timeb = $validate['timeb_enviado'];
-    $partida->resultadob = $validate['resultadob_enviado'];
+    $partida->resultadob = $validate['resultadob_enviado'] ?? null;
     $partida->idcampeonato = $validate['idcampeonato_enviado'];
-    $partida->save();
 
-    return response()->json(['status' => 'success'], 201);
+    if ($partida->save()) {
+        return response()->json(['status' => 'success'], 201);
+    } else {
+        return response()->json(['status' => 'error'], 500);
+    }
 });
 
 /*--------------------Rotas de List--------------------*/
+Route::get('/tabela', [TabelaController::class, 'index']);
+
+Route::get('/usuarios', function (Request $request){
+    $usuarios = Usuario::all();
+    return response()->json($usuarios);
+});
 
 /*--------------------Rotas de Delete--------------------*/
 
@@ -96,6 +113,7 @@ Route::post('/login', function(Request $request){
     if($usuario && Hash::check($dados['senha_enviada'], $usuario->senha)){
         return response()->json([
             'status' => 'Login efetuado com sucesso',
+            'token' => base64_encode($usuario->email),
             'user' => $usuario
         ]);
         
