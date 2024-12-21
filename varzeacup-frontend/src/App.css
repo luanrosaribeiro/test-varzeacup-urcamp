@@ -81,22 +81,30 @@ p {
   width: 100%;
   margin: 20px 0;
 }
-
 .tabelaTimes th{
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  background-color: #2e2e2e;
+  font-weight: bold;
 }
 .tabelaTimes td {
   border: 1px solid #ddd;
   padding: 8px; 
   text-align: start;
-} 
-
-.tabelaTimes th {
+}
+.tabelaPartidas th{
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
   background-color: #2e2e2e;
   font-weight: bold;
 }
+.tabelaPartidas td {
+  border: 1px solid #ddd;
+  padding: 8px; 
+  text-align: center;
+} 
 
 
 

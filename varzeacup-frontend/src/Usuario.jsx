@@ -6,6 +6,7 @@ import Campeonato from './Campeonato';
 import Partida from './Partida';
 import Index from './index';
 import AddUsuario from './AddUsuario';
+import UptUsuario from './uptUsuario';
 import API from './Api';
 
 function Usuario() {
@@ -52,6 +53,7 @@ function Usuario() {
                     <table className="tabelaTimes">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
                                 <th></th>
@@ -61,10 +63,23 @@ function Usuario() {
                         <tbody>
                             {tabela.map((row, index) => (
                                 <tr key={index}>
+                                    <td>{row.id}</td>
                                     <td>{row.nome}</td>
                                     <td>{row.email}</td>
-                                    <td><a>Alterar</a></td>
-                                    <td><a>Deletar</a></td>
+                                    <td><Link to={`/Usuario/UptUsuario/${row.id}`}>Alterar</Link></td>
+                                    <td><a 
+                                        onClick={async () => {
+                                            const confirm = window.confirm(`Deseja realmente excluir o usuário ${row.nome}?`);
+                                            if (confirm) {
+                                                try {
+                                                    await API.deleteUsuario(row.id);
+                                                    alert('Usuário deletado com sucesso!');
+                                                    setTabela(tabela.filter((user) => user.id !== row.id));
+                                                } catch (error) {
+                                                    alert('Erro ao deletar usuário. Tente novamente.');
+                                                }
+                                            }
+                                        }}>Deletar</a></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -76,6 +91,7 @@ function Usuario() {
                     <Route path="/Time" element={<Time/>} />
                     <Route path="/Partida" element={<Partida/>}/>
                     <Route path="/Usuario/AddUsuario" element={<AddUsuario/>} />
+                    <Route path="/Usuario/UptUsuario:id" element={<UptUsuario/>} />
                 </Routes>
             </main>
         </>
