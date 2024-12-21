@@ -19,3 +19,6 @@ No repositório teremos a pasta Banco de Dados onde ficará toda a parte para cr
       DB_PORT=5432
       DB_DATABASE=varzeacup
 
+
+*Observação: Para um primeiro cadastro de usuário utilizar a rota http://localhost:5173/Usuario/addUsuario;
+
