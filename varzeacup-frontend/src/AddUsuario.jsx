@@ -2,10 +2,6 @@ import { useState } from 'react';
 import API from './Api';
 
 function AddUsuario() {
-    const isAuthenticated = Boolean(localStorage.getItem('token'));
-    if (!isAuthenticated) {
-        window.location.href = '/';
-    }
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
